@@ -3,6 +3,9 @@ from setuptools import setup, find_packages
 with open("README.md", "r") as f:
     long_description = f.read()
 
+with open("requirements.txt", "r") as f:
+    required_packages = f.read().split("\n")
+
 setup(
     name="neopylib",  
     version="0.1.dev",
@@ -16,7 +19,7 @@ setup(
     url="https://github.com/intv0id/neopylib",
     packages=find_packages(),
     python_requires=">=3.6.6",
-    install_requires=['dataclasses', 'itertools', 'string'],
+    install_requires=required_packages,
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
