@@ -1,5 +1,5 @@
 from .Constraints.Constraints import ConstraintType, LinkConstraint
-from .GraphEntities import Pattern
+from .Entities.GraphEntities import Pattern
 
 class NeoMatcher:
     @staticmethod

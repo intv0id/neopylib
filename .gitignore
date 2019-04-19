@@ -4,3 +4,6 @@ __pycache__/
 .ipynb_checkpoints/
 *.egg-info/
 build/
+dist/
+requirements.txt
+*.lock

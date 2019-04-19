@@ -1,5 +1,5 @@
-from .Constraints.Constraints import LinkConstraint, ConstraintType
-from .Constraints.Helpers import alpha_enum
+from ..Constraints.Constraints import LinkConstraint, ConstraintType
+from ..Constraints.Helpers import alpha_enum
 from dataclasses import dataclass, field
 
 @dataclass
@@ -66,25 +66,43 @@ class Pattern():
         return ",\n".join(list(map(Edge.parse, self.edges)))
 
 
-@dataclass 
-class SymbolicAttribute():
-    ge: GraphEntity
-    key: str
-    
 @dataclass
-class SymbolicProperty(SymbolicAttribute):
+class Symbolic():
+    ge: GraphEntity
+    name: str
+
+@dataclass
+class SymbolicProperty(Symbolic):
     value: str = None
     def __eq__(self, other):
-        return LinkConstraint(ct=ConstraintType.PROPERTY_EQUAL, obj1=self, obj2=other)
+        return LinkConstraint(ct=ConstraintType.SYMBOLIC_EQUAL, obj1=self, obj2=other)
     def __ne__(self, other):
-        return LinkConstraint(ct=ConstraintType.PROPERTY_NEQUAL, obj1=self, obj2=other)
+        return LinkConstraint(ct=ConstraintType.SYMBOLIC_NEQUAL, obj1=self, obj2=other)
     
     def __le__(self, other):
-        return LinkConstraint(ct=ConstraintType.PROPERTY_LE, obj1=self, obj2=other)
+        return LinkConstraint(ct=ConstraintType.SYMBOLIC_LE, obj1=self, obj2=other)
     def __ge__(self, other):
-        return LinkConstraint(ct=ConstraintType.PROPERTY_GE, obj1=self, obj2=other)
+        return LinkConstraint(ct=ConstraintType.SYMBOLIC_GE, obj1=self, obj2=other)
     
     def __lt__(self, other):
-        return LinkConstraint(ct=ConstraintType.PROPERTY_LT, obj1=self, obj2=other)
+        return LinkConstraint(ct=ConstraintType.SYMBOLIC_LT, obj1=self, obj2=other)
     def __gt__(self, other):
-        return LinkConstraint(ct=ConstraintType.PROPERTY_GT, obj1=self, obj2=other)
+        return LinkConstraint(ct=ConstraintType.SYMBOLIC_GT, obj1=self, obj2=other)
+
+@dataclass
+class SymbolicFunction(Symbolic):
+    value: str = None
+    def __eq__(self, other):
+        return LinkConstraint(ct=ConstraintType.SYMBOLIC_EQUAL, obj1=self, obj2=other)
+    def __ne__(self, other):
+        return LinkConstraint(ct=ConstraintType.SYMBOLIC_NEQUAL, obj1=self, obj2=other)
+    
+    def __le__(self, other):
+        return LinkConstraint(ct=ConstraintType.SYMBOLIC_LE, obj1=self, obj2=other)
+    def __ge__(self, other):
+        return LinkConstraint(ct=ConstraintType.SYMBOLIC_GE, obj1=self, obj2=other)
+    
+    def __lt__(self, other):
+        return LinkConstraint(ct=ConstraintType.SYMBOLIC_LT, obj1=self, obj2=other)
+    def __gt__(self, other):
+        return LinkConstraint(ct=ConstraintType.SYMBOLIC_GT, obj1=self, obj2=other)
