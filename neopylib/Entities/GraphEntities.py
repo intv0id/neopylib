@@ -25,7 +25,7 @@ class Node(GraphEntity):
         return id(self)
 
     def parse(self):
-        labels_parsed = (":"+", ".join(self.labels)) if self.labels else ""
+        labels_parsed = (":" + ", ".join(self.labels)) if self.labels else ""
         prop_parsed = self.parse_properties()
         return f"({self.gid}{labels_parsed}{prop_parsed})"
 
